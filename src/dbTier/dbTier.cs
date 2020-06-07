@@ -51,5 +51,27 @@ namespace dbTier
                 throw;
             }
         }
+
+        public void Update(string StrQuery)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            SqlCommand cmd = new SqlCommand("select * from Person", con);
+
+            try
+            {
+                cmd.CommandText = StrQuery;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch
+            {
+                throw;
+            }
+
+
+        }
     }
 }

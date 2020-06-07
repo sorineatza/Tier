@@ -31,5 +31,18 @@ namespace blTier
                 throw;
             }
         }
+
+        public void UpdateGrid(String sGrid)
+        {
+            try
+            {
+                PersonDAL objdal = new PersonDAL();
+                objdal.Update(sGrid);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

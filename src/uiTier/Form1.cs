@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using blTier;
+using System.Data.SqlClient;
 
 namespace uiTier
 {
@@ -42,6 +43,31 @@ namespace uiTier
 
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
 
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            string StrQuery;
+            //MessageBox.Show("Update Persons");
+
+            try
+            {
+
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    StrQuery = @"update Person set  Name='" + dataGridView1.Rows[i].Cells["Name"].Value.ToString() + "',Surname='" + dataGridView1.Rows[i].Cells["Surname"].Value.ToString() + "' where ID='" + dataGridView1.Rows[i].Cells["ID"].Value.ToString() + "';";
+                    PersonBLL p = new PersonBLL();
+                    p.UpdateGrid(StrQuery);
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("Error Occurred Grid Update");
+            }
+
+        }
     }
 }
